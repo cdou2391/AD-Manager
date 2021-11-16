@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+{% block title %}
+User Information
+{% endblock %}
+{% block content %} 
+<section class="app">
+    <aside class="sidebar">
+    <nav class="sidebar-nav">
+        <ul>
+            <li>
+                <button class="tablinks" onclick="openTab(event, 'dashboard')" ><a href="{{url_for('home')}}">Dashboard</a></button>
+            </li>
+            <li class="item" id="staff">
+                <a href="#staff" class="btn"><i class="fa fa-envelope"></i> Staff</a>
+                <div class="smenu">
+                    <a href="{{url_for('staff')}}">All Staff</a>
+                    <a href="{{url_for('lockedusers')}}"></i>Locked Staffs</a>
+                    <a href="{{url_for('disabledstaff')}}"></i>Disabled Staffs</a>
+                </div>
+            </li>
+        
+        {%if role=="View Only"%}
+            <div class="accessed-links" style="display:none">
+        {%else%} 
+            <div class="accessed-links">
+        {%endif%}
+                <li>
+                    <button class="tablinks" onclick="openTab(event, 'Groups')"><a href="{{url_for('securitygroups')}}">Security Groups</a></button>
+                </li>
+                <li>
+                    <button class="tablinks" onclick="openTab(event, 'Reports')"><a href="{{url_for('reports')}}">Reports</a></button>
+                </li>
+                <li>
+                    <button class="tablinks" onclick="openTab(event, 'Configurations')" ><a href="{{url_for('configuration')}}">Configurations</a></button>
+                </li>
+                <li>
+                    <button class="tablinks" onclick="openTab(event, 'AccessManagement')" id="defaultOpen">Access Management</button>
+                </li>
+            </div>
+        </ul>
+    </nav>
+    <p class="syncStats">
+        <b1>Last sync time:</b1><br>{{syncTime}}<br>
+        {%if syncStatus =="Success"%}
+        <b2>Sync Status:</b2> <b3 style="color: #43924e;">{{syncStatus}}</b3>
+        {%else%}
+            <b2>Sync Status:</b2> <b3 style="color: #924343;">{{syncStatus}}</b3>
+        {%endif%}
+    </p>
+</section>
+{% endblock %}
+{% block content6 %}
+    <fieldset class="userinformation">
+        <legend style="text-align: left;font-size: 30px;">New User Information</legend>
+        <p><h3>Select User: <b4>
+            <select name=mytextarea class="userinfo" id="userinfo" onchange="autoCompleteInfo()">
+                {%for i in range(0,len)%}
+                    <option name=one value={{i}}> {{ictusers[i]}}</option>
+                {%endfor%}
+            </select>
+        <br></b4></h3></p>
+        <p><h3>Username: <b4><input class="userinfo" type="text" id="username" name="username" autocomplete="off"></b4></h3></p>
+        <p><h3>Email: <b4><input class="userinfo" type="email" id="email" name="email" autocomplete="off"></b4></h3></p>
+        <p><h3>Mobile Number: <b4><input class="userinfo" type="text" id="mobilenumber" name="mobilenumber" autocomplete="off"></b4></h3></p>
+        <p><h3>Title: <b4><input class="userinfo" type="text" id="title" name="title" autocomplete="off"></b4></h3></p>
+        <p><h3>OU: <b4><input class="userinfo" type="text" id="organizationu" name="organizationu" autocomplete="off"></b4></h3></p>
+        <center>
+            <div class="userbuttons">
+                <button class="actionbtn btnUser" id="btnUser" style="font-family:Helvetica;"><b>Add</b></button>
+            </div>
+        </center><br>
+    </fieldset>
+<script>
+    function autoCompleteInfo() {
+          var x = document.getElementById("userinfo");
+          var y = document.getElementById("username");
+          var usename='{{ allictusernames[' +x.value+'] }}'
+          alert("The input value has changed. The new value is: " + usename);
+        }
+</script>
+{% endblock %}

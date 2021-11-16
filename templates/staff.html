@@ -1,0 +1,247 @@
+{% extends "base2.html" %}
+{% block title %}
+Staff
+{% endblock %}
+{% block content %} 
+    <div class="sidebar">
+        <div class="linkslist">
+            <li>
+                <button class="tablinks" onclick="window.location.href='{{url_for('home')}}';">Dashboard</a></button>
+            </li>
+            <li class="item" id="staff">
+                <a href="#staff" class="btn"><i class="fa fa-envelope" id="defaultOpen"></i> Staff</a>
+            </li>
+            
+            <li>
+                <button class="tablinks" onclick="window.location.href='{{url_for('home')}}';">Bank of Kigali Staff</a></button>
+            </li>
+            <li>
+                <button class="tablinks" onclick="window.location.href='{{url_for('bkcstaff')}}';">BK Capital Staff</a></button>
+            </li>
+            <li>
+                <button class="tablinks" onclick="window.location.href='{{url_for('home')}}';">BK Insurance Staff</a></button>
+            </li>
+            <li>
+                <button class="tablinks" onclick="window.location.href='{{url_for('home')}}';">Locked Staff</a></button>
+            </li>
+            <li>
+                <button class="tablinks" onclick="window.location.href='{{url_for('disabledstaff')}}';">Disabled Staff</a></button>
+            </li>
+            <li>
+                <button class="tablinks" onclick="window.location.href='{{url_for('serviceaccounts')}}';">Service Accounts</a></button>
+            </li>
+            <li>
+                <button class="tablinks" onclick="window.location.href='{{url_for('consultants')}}';" id="defaultOpen" >Consultants</a></button>
+            </li>
+            
+            {%if role=="View Only"%}
+                <div class="accessed-links" style="display:none">
+            {%else%} 
+                <div class="accessed-links">
+            {%endif%}
+                <li>
+                    <button class="tablinks" onclick="window.location.href='{{url_for('securitygroups')}}';">Security Groups</button>
+                </li>
+                <li>
+                    <button class="tablinks" onclick="window.location.href='{{url_for('reports')}}';">Reports</button>
+                </li> 
+                <li>
+                    <button class="tablinks" onclick="window.location.href='{{url_for('configuration')}}';">Configurations</button>
+                </li>
+                <li>
+                    <button class="tablinks" onclick="window.location.href='{{url_for('accessmanagement')}}';">Access Management</button>
+                </li>
+                <li>
+                    <button class="tablinks" onclick="window.location.href='{{url_for('loginlogs')}}';">Login Logs</button>
+                </li>
+        </div>
+    </div>
+    <div class="syncStats">
+        <b1>Last sync time:</b1><br>{{syncTime}}<br>
+        {%if syncStatus =="Success"%}
+        <b2>Sync Status:</b2> <b3 style="color: #43924e;">{{syncStatus}}</b3>
+        {%else%}
+            <b2>Sync Status:</b2> <b3 style="color: #924343;">{{syncStatus}}</b3>
+        {%endif%}
+    </div>
+{% endblock %}
+
+{% block content2 %}
+<fieldset class="content-center">
+    <legend style="font-size: 30px;">All Staff of BK Group Ltd</legend>
+    <button class="button btnAdd" id="btnAdd"><a href="{{ url_for('newuser') }}" type="submit" style="font-family:Helvetica;">Add new staff</a></button>
+    
+
+    <div class="w3-bar" style="border: none">
+        <button class="w3-bar-item w3-button tablink w3-grey" onclick="openCompany(event,'Bank of Kigali')">Bank of Kigali</button>
+        <button class="w3-bar-item w3-button tablink" onclick="openCompany(event,'BK Capital')">BK Capital</button>
+        <button class="w3-bar-item w3-button tablink" onclick="openCompany(event,'BK Tech House')">BK Tech House</button>
+        <button class="w3-bar-item w3-button tablink" onclick="openCompany(event,'BK Insurance')">BK Insurance</button>
+        <button class="w3-bar-item w3-button tablink" onclick="openCompany(event,'Service Accounts')">Service Accounts</button>
+        <button class="w3-bar-item w3-button tablink" onclick="openCompany(event,'Consultants')">Consultants</button>
+    </div><br>
+    <div id="Bank of Kigali" class="w3-container w3-border company" style="background-color: white; color: black;">
+        <table id="table-bk" style="color: black;"  class="table table-striped table-bordered" width="100%" data-page-length="10" data-order="[[ 1, &quot;asc&quot; ]]">
+            <thead>
+                <tr>
+                    <th>Fullnames</th>
+                    <th>Username</th>
+                    <th>Email</th>
+                    <th>Title</th>
+                    <th>Department</th>
+                    <th>Date Created</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {%for i in range(0,len)%}
+                    {%if companies[i] == "Bank of Kigali" %}
+                        {%if staffStatus[i] == "Enabled" %}
+                            <tr>
+                                <td><p id="clickedallstaffname" name="clickedallstaffname">{{allStaff[i]}}</p></td>
+                                <td id={{username[i]}} name={{username[i]}} class="viewInfo"><a href="{{ url_for('userInformation', var=username[i]) }}" type="submit">{{username[i]}}</a></td>
+                                <td id=clickedstaffemail>{{email[i]}}</class=></td>
+                                <td id=clickedstafftitle>{{title[i]}}</td>
+                                <td id=clickedstaffdepartment>{{department[i]}}</td>
+                                <td id=clickedstaffCreationDate>{{staffCreationDate[i]}}</td>
+                                <td>
+                                    <button class="button disableuser" id="disableuser"><a href="{{ url_for('disable', var=username[i]) }}" type="submit" style="font-family:Helvetica;"><b>Disable</b></a></button>
+                                </td>
+                            </tr>
+                        {%endif%}
+                    {%endif%}
+                {%endfor%}
+            </tbody>
+        </table>
+    </div>
+    <div id="BK Capital" class="w3-container w3-border company" style="background-color: white; display:none">
+    <table id="table-bkc" style="color: black;"  class="table table-striped table-bordered" width="100%" data-page-length="10" data-order="[[ 1, &quot;asc&quot; ]]">
+        <thead>
+            <tr>
+                <th>Fullnames</th>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Title</th>
+                <th>Department</th>
+                <th>Date Created</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {%for i in range(0,len)%}
+                {%if companies[i] == "BK Capital"%}
+                <tr>
+                    <td>{{allStaff[i]}}</td>
+                    <td id={{i}} class="viewInfo"><a href="{{ url_for('userInformation', var=username[i]) }}" href="#popup1" type="submit">{{username[i]}}</a></td>
+                    <td>{{email[i]}}</button></td>
+                    <td>{{title[i]}}</td>
+                    <td>{{department[i]}}</td>
+                    <td>{{staffCreationDate[i]}}</td>
+                    <td>
+                        <button class="button disableuser" id="disableuser"><a href="{{ url_for('disable', var=username[i]) }}" type="submit" style="font-family:Helvetica;"><b>Disable</b></a></button>
+                    </td>
+                </tr>
+                {%endif%}
+            {%endfor%}
+        </tbody>
+        </table>
+    </div>
+    
+    <div id="BK Tech House" class="w3-container w3-border company" style="background-color: white; display:none">
+    <table id="table-bkt" style="color: black;"  class="table table-striped table-bordered" width="100%" data-page-length="10" data-order="[[ 1, &quot;asc&quot; ]]">
+        <thead>
+            <tr>
+                <th>Fullnames</th>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Title</th>
+                <th>Department</th>
+                <th>Date Created</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {%for i in range(0,len)%}
+                {%if companies[i] == "BK Tech House"%}
+                <tr>
+                    <td>{{allStaff[i]}}</td>
+                    <td id={{i}} class="viewInfo"><a href="{{ url_for('userInformation', var=username[i]) }}" href="#popup1" type="submit">{{username[i]}}</a></td>
+                    <td>{{email[i]}}</button></td>
+                    <td>{{title[i]}}</td>
+                    <td>{{department[i]}}</td>
+                    <td>{{staffCreationDate[i]}}</td>
+                    <td>
+                        <button class="button disableuser" id="disableuser"><a href="{{ url_for('disable', var=username[i]) }}" type="submit" style="font-family:Helvetica;"><b>Disable</b></a></button>
+                    </td>
+                </tr>
+                {%endif%}
+            {%endfor%}
+        </tbody>
+        </table>
+    </div>
+
+    <div id="BK Insurance" class="w3-container w3-border company" style="background-color: white; display:none">
+    <table id="table-gi" style="color: black;"  class="table table-striped table-bordered" width="100%" data-page-length="10" data-order="[[ 1, &quot;asc&quot; ]]">
+        <thead>
+            <tr>
+                <th>Fullnames</th>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Title</th>
+                <th>Department</th>
+                <th>Date Created</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {%for i in range(0,len)%}
+                {%if companies[i] == "BK Insurance"%}
+                <tr>
+                    <td>{{allStaff[i]}}</td>
+                    <td id={{i}} class="viewInfo"><a href="{{ url_for('userInformation', var=username[i]) }}" href="#popup1" type="submit">{{username[i]}}</a></td>
+                    <td>{{email[i]}}</button></td>
+                    <td>{{title[i]}}</td>
+                    <td>{{department[i]}}</td>
+                    <td>{{staffCreationDate[i]}}</td>
+                    <td>
+                        <button class="button disableuser" id="disableuser"><a href="{{ url_for('disable', var=username[i]) }}" type="submit" style="font-family:Helvetica;"><b>Disable</b></a></button>
+                    </td>
+                </tr>
+                {%endif%}
+            {%endfor%}
+        </tbody>
+        </table>
+    </div>
+
+    <div id="Service Accounts" class="w3-container w3-border company" style="background-color: white; display:none">
+        <table id="table-sa" style="color: black;"  class="table table-striped table-bordered" width="100%" data-page-length="10" data-order="[[ 1, &quot;asc&quot; ]]">
+            <thead>
+                <tr>
+                    <th>Fullnames</th>
+                    <th>Username</th>
+                    <th>Date Created</th>
+                    <th>Purpose</th>
+                    <th>LastLogon</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {%for i in range(0,len3)%}
+                    <tr>
+                        <td>{{serviceAccountsName[i]}}</td>
+                        <td id={{i}} class="viewInfo"><a href="{{ url_for('userInformation', var=serviceAccountsUsername[i]) }}" type="submit">{{serviceAccountsUsername[i]}}</a></td>
+                        <td>{{serviceAccountsCreationDate[i]}}</td>
+                        <td>{{serviceAccountsDescription[i]}}</td>
+                        <td>
+                            {{serviceAccountsLastLogon[i]}}
+                        </td>
+                        <td>
+                            <button class="button disableuser" id="disableuser"><a href="{{ url_for('disable', var=serviceAccountsUsername[i]) }}" type="submit" style="font-family:Helvetica;"><b>Disable</b></a></button>
+                        </td>
+                    </tr>
+                {%endfor%}
+            </tbody>
+        </table>
+    </div>
+    </fieldset>
+{% endblock %}

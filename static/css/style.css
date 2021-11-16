@@ -1,0 +1,993 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+body {
+  font-family: 'Roboto', sans-serif;
+  text-align: left;
+  background-color:#14161d;
+  color: white;
+  }
+
+  .topnavigation{
+    background-color: #434b92;
+    height:60px;
+    width: 100%;
+  }
+  
+  .topnavigation a {
+  display: block;
+  color: #f2f2f2;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+  }
+  
+  .topnavigation a2 {
+  float: left;
+  color: #f2f2f2;
+  padding: 7px 8px;
+  font-size: 30px;
+  }
+  
+  .topnav a1 {
+  float: Right;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+  }
+
+  .topnavigation a3 {
+  color:white;
+  text-align: center;
+  text-decoration: none;
+  font-size: 22px;
+  margin-right: 5px;
+  }
+    
+  .topnav a4 {
+    color: #555555;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+  }
+  
+  .topnav a:hover {
+  color: white;
+  }
+  
+
+  
+  .topnav a.active {
+  background-color: #434b92;
+  color: white;
+  float: right;
+  }
+  
+  .topnav .icon {
+  display: none;
+  }
+  
+  @media screen and (max-width: 600px) {
+  .topnav a:not(:first-child) {display: none;}
+  .topnav a.icon {
+  float: right;
+  display: block;
+  }
+  }
+  
+  @media screen and (max-width: 600px) {
+  .topnav.responsive {position: relative;}
+  .topnav.responsive .icon {
+  position: absolute;
+  right: 0;
+  top: 0;
+  }
+  .topnav.responsive a {
+  float: none;
+  display: block;
+  text-align: left;
+  }
+  }
+  #loader {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    z-index: 1;
+    width: 150px;
+    height: 150px;
+    margin: -75px 0 0 -75px;
+    border: 16px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 16px solid #3498db;
+    width: 120px;
+    height: 120px;
+    -webkit-animation: spin 2s linear infinite;
+    animation: spin 2s linear infinite;
+  }
+  
+  @-webkit-keyframes spin {
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); }
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  
+  /* Add animation to "page content" */
+  .animate-bottom {
+    position: relative;
+    -webkit-animation-name: animatebottom;
+    -webkit-animation-duration: 1s;
+    animation-name: animatebottom;
+    animation-duration: 1s
+  }
+  
+  @-webkit-keyframes animatebottom {
+    from { bottom:-100px; opacity:0 } 
+    to { bottom:0px; opacity:1 }
+  }
+  
+  @keyframes animatebottom { 
+    from{ bottom:-100px; opacity:0 } 
+    to{ bottom:0; opacity:1 }
+  }
+  
+  
+  .content {
+  position: relative;
+  float: left;
+  width: 100%;
+  padding-left: 8px;
+  padding-right: 8px;
+  }
+  .content-center {
+    position: relative;
+    float: left;
+    margin: auto;
+    border: none;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    width: 100%;
+  }
+  .content-center-group{
+    position: relative;
+    float: left;
+    width: 48%;
+    border-radius: 4px;
+    margin-top: 10px;
+  }
+
+  .content-left{
+    position: relative;
+    float: left;
+    width: 48%;
+    border-radius: 4px;
+    margin-right: 20px;
+    margin-top: 10px;
+  }
+  
+  .content-conf-main{
+    position: relative;
+    width: 100%;
+    border-radius: 4px;
+  }
+  .content-conf1 {
+    position: relative;
+    float: left;
+    margin: auto;
+    border: none;
+    border-radius: 4px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 100%;
+  }
+
+  .content-conf0 {
+    position: relative;
+    float: left;
+    margin: auto;
+    border: solid;
+    border-radius: 4px;
+    margin-top: 10px;
+    margin-left: 10px;
+    width: 30%;
+  }
+  
+  .content-report-left{
+    position: relative;
+    float: left;
+    width: 48%;
+  }
+
+  .content-report-right{
+    position: relative;
+    float: left;
+    width: 48%;
+  }
+  
+  fieldset {
+    border-radius: 4px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border: none;
+  }
+  
+  legend {
+    color: white;
+    padding: 5px 10px;
+    margin-bottom: 10px;
+    border: none;
+    background-color: #434b92;
+    border-radius: 15px;
+  }
+  
+  input, select,textarea {
+    width: 100%;
+    padding: 5px 9px;
+    margin: 3px 0;
+    display: inline-block;
+    border: 1px solid #434b92;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+
+  .content-conf1 input[type=text],.content-conf1 input[type=email],.content-conf1 input[type=password] {
+    width:200px;
+  }
+  
+  @-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+  }
+  
+  @keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+  }
+  
+  /* Add animation to "page content" */
+  .animate-bottom {
+  position: relative;
+  -webkit-animation-name: table1;
+  -webkit-animation-duration: 10s;
+  animation-name: table1;
+  animation-duration: 10s;
+  }
+  
+  @-webkit-keyframes table1 {
+  from { bottom:-100px; opacity:0 } 
+  to { bottom:0px; opacity:1 }
+  }
+  
+  @keyframes table1 { 
+  from{ bottom:-100px; opacity:0 } 
+  to{ bottom:0; opacity:1 }
+  }
+  
+  @-webkit-keyframes table7 {
+    from { bottom:-100px; opacity:0 } 
+    to { bottom:0px; opacity:1 }
+    }
+    
+    @keyframes table7 { 
+    from{ bottom:-100px; opacity:0 } 
+    to{ bottom:0; opacity:1 }
+    }
+  
+  table{
+    border: none;
+    width: 100%;
+  }
+  
+  .actionbar{
+    border-radius: 4px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-top: 20px;
+    margin-bottom: 100px;
+    float: right;
+    width: 15%;
+  }
+  .linkslist{
+    text-decoration: none;
+    color: white;
+    float: left; 
+    margin-top: 0px;
+}
+
+
+li{
+    list-style-type: none;
+    margin-left: 0px;
+}
+li:hover{
+    background-color: #434b92;
+    color: white;
+}
+
+a{
+    text-decoration: none;
+    color: white;
+}
+.tablinks{
+    background-color: #252936;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: left;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    width: 100%;
+}
+.tablinks:hover, .tablinks:active {
+    background-color: #434b92;
+    color: white;
+}
+
+.syncStats{
+    position: absolute;
+    width: 100%;
+    bottom: 50px;
+    border: 3px solid #434b92;
+    background-color:#434b92b6;
+    color: white;
+}
+  .w3-grey{
+    background-color:#252936;
+  }
+  /* Style the tab */
+  .tab {
+    border: none;
+    background-color:#252936;
+    width: 10%;
+    height: 100%;
+    position: fixed;
+  }
+  
+  /* Style the buttons inside the tab */
+ 
+  
+  /* Change background color of buttons on hover */
+  
+  
+  
+  
+  /* Create an active/current "tab button" class */
+  
+  
+  
+
+  .content-tab{
+    position: relative;
+    padding: 0px 12px;
+    width: 90%;
+    height: 100%;
+    margin-left: 200px;
+  }
+
+  .content-reset{
+    margin: auto;
+    width: 60%;
+    padding: 10px;
+  }
+  
+  /* The Modal (background) */
+  .modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 30%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    -webkit-animation-name: fadeIn; /* Fade in the background */
+    -webkit-animation-duration: 0.4s;
+    animation-name: fadeIn;
+    animation-duration: 0.4s
+  }
+  
+  /* Add Animation */
+  @-webkit-keyframes slideIn {
+    from {bottom: -300px; opacity: 0} 
+    to {bottom: 0; opacity: 1}
+  }
+  
+  @keyframes slideIn {
+    from {bottom: -300px; opacity: 0}
+    to {bottom: 0; opacity: 1}
+  }
+  
+  @-webkit-keyframes fadeIn {
+    from {opacity: 0} 
+    to {opacity: 1}
+  }
+  
+  @keyframes fadeIn {
+    from {opacity: 0} 
+    to {opacity: 1}
+  }
+  a{
+    color: #434b92;
+    text-decoration:none;  
+  }
+  
+
+  .viewInfo:hover{
+    cursor: pointer;
+  }
+  
+  .modal {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    visibility: hidden;
+    transform: scale(1.1);
+    transition: visibility 0s linear 0.25s, opacity 0.25s 0s, transform 0.25s;
+  }
+  .modal-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color:#14161d;
+    padding: 1rem 1.5rem;
+    width: 24rem;
+    border-radius: 0.5rem;
+  }
+  .show-modal {
+    opacity: 1;
+    visibility: visible;
+    transform: scale(1.0);
+    transition: visibility 0s linear 0s, opacity 0.25s 0s, transform 0.25s;
+  }
+  
+  .box {
+    width: 40%;
+    margin: 0 auto;
+    background: rgba(255,255,255,0.2);
+    padding: 35px;
+    border: 2px solid #fff;
+    border-radius: 20px/50px;
+    background-clip: padding-box;
+    text-align: center;
+  }
+  
+
+  .btnAdd,.btnAddSG, .btnsave, .btnsync, .btnsave {
+    background-color: white; 
+    color: black; 
+    border: 5px solid #434b92;
+    margin-top: 10px;
+    margin-bottom:10px;
+  }
+  .btnReminder, .btnremovemember,.disableuser{
+    background-color: white; 
+    color: black; 
+    border: 2px solid #434b92;
+  }
+  .btnUser{
+    width: 20%;
+    background-color: white; 
+    color: black; 
+    border: 2px solid #434b92;
+  }
+  .disableuser:hover,.btnsave:hover, .btnsync:hover, .btnUser:hover, .btnAdd:hover,.btnAddSG:hover,.btnReminder:hover,.btnremovemember:hover{
+    background-color:#434b92;
+    color: white;
+    cursor: pointer;
+  }
+
+  .overlay {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.7);
+    transition: opacity 500ms;
+    visibility: hidden;
+    opacity: 0;
+  }
+  .overlay:target {
+    visibility: visible;
+    opacity: 1;
+  }
+  
+  .popup {
+    padding: 20px;
+    background: #fff;
+    border-radius: 5px;
+    width: 30%;
+    position: relative;
+    transition: all 5s ease-in-out;
+    float: right;
+    height: 100%;
+  }
+  
+  .popup h2 {
+    margin-top: 0;
+    color:black;
+  }
+  .popup .content {
+    overflow: auto;
+  }
+  
+  @media screen and (max-width: 700px){
+    .box{
+      width: 70%;
+    }
+    .popup{
+      width: 70%;
+    }
+  }
+  
+  @keyframes background {
+    0% {
+      background-position: 0 0;
+    }
+    100% {
+      background-position: 400px 0;
+    }
+  }
+
+  /* Table Styles */
+
+.fl-table {
+  border-radius: 5px;
+  font-size: 12px;
+  font-weight: normal;
+  border: none;
+  border-collapse: collapse;
+  width: 100%;
+  max-width: 100%;
+  white-space: nowrap;
+  color: white;
+  background-color: #14161d;
+}
+
+.button:hover{
+  color: white;
+}
+
+a:hover{
+  color: white;
+}
+
+td a:hover{
+  color: #434b92;
+  text-decoration: underline;
+}
+.fl-table td, .fl-table th {
+  text-align: left;
+  padding: 8px;
+}
+
+
+.fl-table td {
+  font-size: 12px;
+}
+.fl-table tr:hover{
+  background-color:   #252936;
+  color: white;
+}
+
+.fl-table thead th {
+  color: #ffffff;
+  background: #434b92;
+}
+
+.fl-table tbody {
+  width: auto;
+  position: relative;
+  overflow-x: auto;
+  background-color: #252936;
+}
+
+
+/* Responsive */
+
+.in-users{
+  width: auto;
+  float: left;
+  margin-right: 10px;
+  margin-bottom: 15px;
+  padding: 10px;
+  border-color: #434b92;
+}
+
+.in-users:hover{
+  cursor: pointer;
+  color: white;
+  background-color: #434b92;
+  
+}
+
+
+h3{
+  color: #888888;
+}
+
+.overview{
+  width: 23%;
+  margin-right: 20px;
+  float: left;
+  
+}
+
+.dashboard{
+  width: 100%;
+}
+
+hr {
+  display: block;
+  margin-top: 0.5em;
+  margin-bottom: 1em;
+  margin-left: auto;
+  margin-right: auto;
+  border-style: inset;
+  border-width: 1px;
+  border-color:white;
+}
+
+.verticalLine {
+  width: 1px;
+  height: auto;
+  background:white;
+  float: left;
+  margin-right: 5px;
+}
+
+.loggedinfo{
+  float: right;
+  background-color:#14161d;
+  color:white;
+}
+
+.pcompany{
+  background-color: #434b92;
+  color: white;
+  border: 0px solid;
+  padding: 10px;
+  font-size: 24px;
+  border-radius: 4px 4px 0px 0px; 
+}
+.infocompany{
+  border-radius:0px 0px 4px 4px; 
+  padding: 10px;
+  font-size: 19px;
+  border-style: 0px 4px 4px 4px solid;
+}
+
+.syncStats{
+  position: absolute;
+  width: 100%;
+  bottom: 60px;
+  border: 3px solid #434b92;
+  background-color: #434b92;
+  color: white;
+}
+
+.usrxprpaswd{
+  position: relative;
+  float: left;
+  width: 100%;
+  border-radius: 4px;
+  margin-right: 20px;
+}
+
+.accessmanagement{
+  position: relative;
+  float: left;
+  width: 100%;
+  border-radius: 4px;
+  margin-right: 20px;
+}
+
+.lockedusers{
+  position: relative;
+  float: left;
+  width: 49%;
+  border-radius: 4px;
+}
+
+img{
+  float: left;
+}
+.footer {
+  left:100px;
+  bottom: 0;
+  width: 100%;
+  background-color: #434b92;
+  color: white;
+  text-align: center;
+}
+
+#loader {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 1;
+  width: 150px;
+  height: 150px;
+  margin: -75px 0 0 -75px;
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid #3498db;
+  width: 120px;
+  height: 120px;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+}
+
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Add animation to "page content" */
+.animate-bottom {
+  position: relative;
+  -webkit-animation-name: animatebottom;
+  -webkit-animation-duration: 1s;
+  animation-name: animatebottom;
+  animation-duration: 1s
+}
+
+@-webkit-keyframes animatebottom {
+  from { bottom:-100px; opacity:0 } 
+  to { bottom:0px; opacity:1 }
+}
+
+@keyframes animatebottom { 
+  from{ bottom:-100px; opacity:0 } 
+  to{ bottom:0; opacity:1 }
+}
+
+#myDiv {
+  display: none;
+  text-align: center;
+}
+
+#table-usrxprpaswd1, #table2, #table3, #table4, #table5 {
+  display: none;
+}
+
+b4{
+  color: black;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+
+.userinfo{
+  width: 60%;
+  white-space: initial;
+  margin-right: 40px;
+}
+.numberDays{
+  width: 15%;
+  white-space: initial;
+}
+
+.userinformation{
+  width: 40%;
+  float: left;
+  text-align: right;
+  border: 2px solid;
+  font-size: small;
+}
+.w3-bar{
+  width:100%;
+  overflow:hidden;
+  color: white;
+}
+.w3-bar .w3-bar-item{
+  padding:8px 16px;
+  float:left;
+  width:auto;
+  border:none;
+  display:block;
+  outline:0;
+  color: white;
+}
+.w3-bar .w3-button{
+  white-space:normal;
+  color:black;
+}
+.w3-bar:hover .w3-button:hover{
+  color:white!important;
+  background-color:#434b92!important;
+}
+
+.w3-grey,.w3-hover-grey:hover,.w3-gray,.w3-hover-gray:hover{
+  color:white!important;
+  background-color:#434b92!important;
+}
+.w3-container{
+  font-size: 14px;
+  background-color: #252936;
+  width: 100%;
+}
+.w3-border{
+  border:none;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.switch input { 
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color:#434b92;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #434b92;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+.fa-caret-down {
+  float: right;
+  padding-right: 8px;
+}
+
+.active {
+  background-color:#434b92;
+  color: white;
+  width: 100%;
+  float: right;
+}
+
+/* Dropdown container (hidden by default). Optional: add a lighter background color and some left padding to change the design of the dropdown content */
+.dropdown-container {
+  float: left;
+  display: none;
+  background-color: #252936;
+  padding-left: 15px;
+}
+
+.error-icon{
+  display: block;
+  margin-left: 30%;
+  margin-right: 40%;
+  padding-top: 10px;
+  padding-left: 10px;
+}
+
+
+.menu {
+  width: 300px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.item {
+  overflow: hidden;
+}
+
+.btn {
+  display: block;
+  padding: 16px 20px;
+  color: white;
+  position: relative;
+}
+
+.btn::before {
+  content: "";
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  background: #434b92;
+  left: 20px;
+  bottom: -7px;
+  transform: rotate(135deg);
+}
+
+.btn i {
+  padding-right: 10px;
+}
+
+.smenu {
+  background:#252936;
+  overflow: hidden;
+  transition: max-height 0.3s;
+  max-height: 0;
+}
+
+.smenu a {
+  display: block;
+  padding: 8px 13px;
+  color: white;
+  margin: 4px 0;
+  position: relative;
+}
+
+.smenu a::before {
+  content: "";
+  position: absolute;
+  width: 6px;
+  height: 100%;
+  background: #434b92;
+  left: 0;
+  top: 0;
+  transition: .3s;
+}
+
+.smenu a:hover::before {
+  opacity: 1;
+}
+
+.item:target .smenu {
+  max-height: 10em;
+}
+
+.line{
+  width: 100%;
+  height: 47px;
+  border-bottom: 1px solid black;
+  position: absolute;
+  }

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Simple AD Manager</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->	
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="./static/css/util.css">
+    <link rel="stylesheet" type="text/css" href="./static/css/main.css">
+    <link rel="stylesheet" type="text/css" href="./static/css/style.css">
+    <link href="./static/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
+    
+    <script src="./static/js/jquery-3.5.1.js" type="text/javascript"></script>
+    <script src="./static/js/jquery.dataTables.min.js" type="text/javascript"></script>
+    <script src="./static/js/scripts.js" type="text/javascript"></script>
+    
+
+<!--===============================================================================================-->
+
+</head>
+<body onload="myFunction()">
+    <div class="topnavigation" id="myTopnav">
+        <img src="./static/images/main.png" alt="Simple AD Manager" width="60" height="60">
+        <a2>Simple AD Manager</a2>
+        <p class="loggedinfo">
+            <img src="./static/images/profile.png" alt="profile" width="60" height="60">
+            <a3>{{loggedUser}}</a3><br>
+            {{loggedtitle}}
+        </p>
+    </div>
+    <div class="loader"></div>
+    <div class="tab">
+        <button class="tablinks" onclick="openTab(event, 'dashboard')" id="defaultOpen"><img src="./static/images/home.png" alt="dashboard" width="35" height="35">Dashboard</button>
+        <button class="tablinks" onclick="openTab(event, 'Users')"><img src="./static/images/staff.png" alt="staff" width="35" height="35">All Staff</button>
+        <button class="tablinks" onclick="openTab(event, 'Groups')"><img src="./static/images/security.png" alt="security group" width="35" height="35">Security Groups</button>
+        <button class="tablinks" onclick="openTab(event, 'Reports')"><img src="./static/images/report.png" alt="reports" width="35" height="35">Reports</button>
+        <button class="tablinks" onclick="openTab(event, 'Configurations')"><img src="./static/images/conf.png" alt="configuration" width="35" height="35">Configurations</button>
+        <p class="syncStats">
+            <b1>Last sync time:</b1><br>{{syncTime}}<br>
+            {%if syncStatus =="Success"%}
+            <b2>Sync Status:</b2> <b3 style="color: #43924e;">{{syncStatus}}</b3>
+            {%else%}
+                <b2>Sync Status:</b2> <b3 style="color: #924343;">{{syncStatus}}</b3>
+            {%endif%}
+        </p>
+    </div>
+    <div class="content-tab">
+        <div id="dashboard" class=tabcontent>
+            {% block content %}
+            {% endblock %}
+        </div>
+        <div id="Users" class=tabcontent>
+            {% block content2 %}
+            {% endblock %}
+        </div>
+        <div id="Groups" class=tabcontent>
+            {% block content3 %}
+            {% endblock %}
+        </div>
+        <div id="Reports" class=tabcontent>
+            {% block content4 %}
+            {% endblock %}
+        </div>
+        <div id="Configurations" class=tabcontent>
+            {% block content5 %}
+            {% endblock %}
+        </div>
+    </div>
+    <div class="footer">
+        <p>Simple AD Manager.<br>
+            Copyright 2020 by Rugamba Cedric for Bank of Kigali</p>
+        {% block content6 %}
+        {% endblock %}
+    </div>
+    
+    <script>
+        function openCompany(evt, companyName) {
+            var i, x, tablinks;
+            x = document.getElementsByClassName("company");
+            for (i = 0; i < x.length; i++) {
+                x[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tablink");
+            for (i = 0; i < x.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" w3-grey", "");
+            }
+            document.getElementById(companyName).style.display = "block";
+            evt.currentTarget.className += " w3-grey";
+        }
+        var myVar;
+
+        function myFunction() {
+            myVar = setTimeout(showPage, 3000);    
+        }
+
+        function showPage() {
+            document.getElementById("loader").style.display = "none";
+            document.getElementById("table1").style.display = "block";
+            document.getElementById("table7").style.display = "block";
+            document.getElementById("table8").style.display = "block";
+        }
+
+        function navFunction() {
+        var x = document.getElementById("myTopnav");
+        if (x.className === "topnav") {
+            x.className += " responsive";
+        } else {
+            x.className = "topnav";
+        }
+        }
+        function openTab(evt, tabName) {
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+        document.getElementById(tabName).style.display = "block";
+        evt.currentTarget.className += " active";
+        }
+
+        // Get the element with id="defaultOpen" and click on it
+        document.getElementById("defaultOpen").click();
+
+        var el_up = document.getElementById("GFG_UP");
+        var username = document.getElementById("staffUsername"); 
+        var fullname = document.getElementById("staffnames"); 
+        var email = document.getElementById("staffemail"); 
+        var title = document.getElementById("stafftitle"); 
+        var department = document.getElementById("staffdepartment"); 
+        var creationdate = document.getElementById("staffcreationdate"); 
+        el_up.innerHTML = "Click on button to get ID"; 
+        
+        function viewInfo_Click(clicked) { 
+            username.innerHTML =clicked;
+        } 
+        function setValue(clicked) {
+            staffusername.innerHTML = clicked;
+            alert(clicked)
+        }
+    </script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,143 @@
+{% extends "base2.html" %}
+{% block title %}
+Home
+{% endblock %}
+{% block content %} 
+    <div class="sidebar">
+        <div class="linkslist">
+            <li>
+                <button class="tablinks selectedTab" onclick="window.location.href='{{url_for('home')}}';" >Dashboard</a></button>
+            </li>
+            <li>
+                <button class="tablinks" onclick="window.location.href='{{url_for('bkstaff')}}';">Bank of Kigali Staff</a></button>
+            </li>
+            <li>
+                <button class="tablinks" onclick="window.location.href='{{url_for('bktstaff')}}';">BK Techouse Staff</a></button>
+            </li>
+            <li>
+                <button class="tablinks" onclick="window.location.href='{{url_for('bkcstaff')}}';">BK Capital Staff</a></button>
+            </li>
+            <li>
+                <button class="tablinks" onclick="window.location.href='{{url_for('bkistaff')}}';">BK Insurance Staff</a></button>
+            </li>
+            <li>
+                <button class="tablinks" onclick="window.location.href='{{url_for('lockedusers')}}';">Locked Staff</a></button>
+            </li>
+            <li>
+                <button class="tablinks" onclick="window.location.href='{{url_for('disabledstaff')}}';">Disabled Staff</a></button>
+            </li>
+            <li>
+                <button class="tablinks" onclick="window.location.href='{{url_for('serviceaccounts')}}';">Service Accounts</a></button>
+            </li>
+            <li>
+                <button class="tablinks" onclick="window.location.href='{{url_for('consultants')}}';" >Consultants</a></button>
+            </li>
+            
+            {%if role=="View Only"%}
+                <div class="accessed-links" style="display:none">
+            {%else%} 
+                <div class="accessed-links">
+            {%endif%}
+                <li>
+                    <button class="tablinks" onclick="window.location.href='{{url_for('securitygroups')}}';">Security Groups</button>
+                </li>
+                <li>
+                    <button class="tablinks" onclick="window.location.href='{{url_for('reports')}}';">Reports</button>
+                </li> 
+                <li>
+                    <button class="tablinks" onclick="window.location.href='{{url_for('configuration')}}';">Configurations</button>
+                </li>
+                <li>
+                    <button class="tablinks" onclick="window.location.href='{{url_for('accessmanagement')}}';">Access Management</button>
+                </li>
+                <li>
+                    <button class="tablinks" onclick="window.location.href='{{url_for('loginlogs')}}';">Login Logs</button>
+                </li>
+        </div>
+    </div>
+    <div class="syncStats">
+        <b1>Last sync time:</b1><br>{{syncTime}}<br>
+        {%if syncStatus =="Success"%}
+        <b2>Sync Status:</b2> <b3 style="color: #43924e;">{{syncStatus}}</b3>
+        {%else%}
+            <b2>Sync Status:</b2> <b3 style="color: #924343;">{{syncStatus}}</b3>
+        {%endif%}
+    </div>
+{% endblock %}
+{% block content1 %} 
+<fieldset class="content-dashboard">
+<legend style="font-size: 30px;">DASHBOARD</legend>
+    <div class="flex-container">
+        <div class="dash" onclick="window.location.href='{{url_for('bkstaff')}}';">
+            <div class="pcompany">Bank of Kigali</div>
+            <div class="infocompany">
+                All users: {{countbk}}<br>
+                Active users:  {{activecountbk}}<br>
+                Disabled users: {{disabledcountbk}}<br>
+                User with "Password never expires": {{pwdnvrxprcountbk}}<br>
+                Users with Irregular Status: {{unknowncountbk}}
+            </div>
+        </div>
+        <div class="dash" onclick="window.location.href='{{url_for('bkistaff')}}';">
+            <div class="pcompany">BK Insurance</div>
+            <div class="infocompany">
+                All users: {{countbki}}<br>
+                Active users:  {{activecountbki}}<br>
+                Disabled users: {{disabledcountbki}}<br>
+                User with "Password never expires": {{pwdnvrxprcountbki}} <br>
+                Users with Irregular Status: {{unknowncountbki}}
+            </div>
+        </div>
+        <div class="dash" onclick="window.location.href='{{url_for('bktstaff')}}';">
+            <div class="pcompany">BK Tech House</div>
+            <div class="infocompany">
+                All users: {{countbkt}}<br>
+                Active users:  {{activecountbkt}}<br>
+                Disabled users: {{disabledcountbkt}}<br>
+                User with "Password never expires": {{pwdnvrxprcountbkt}}<br>
+                Users with Irregular Status: {{unknowncountbkt}}
+            </div>
+        </div> 
+        <div class="dash" onclick="window.location.href='{{url_for('bkcstaff')}}';">
+            <div class="pcompany">BK Capital</div>
+            <div class="infocompany">
+                All users: {{countbkc}}<br>
+                Active users:  {{activecountbkc}}<br>
+                Disabled users: {{disabledcountbkc}}<br>
+                User with "Password never expires": {{pwdnvrxprcountbkc}}<br>
+                Users with Irregular Status: {{unknowncountbkc}}
+            </div>
+        </div>
+    </div>
+</fieldset>
+<fieldset class="usrxprpaswd">
+    <legend style="font-size: 24px;">Users with soon to expire password</legend>
+    <div id="userspwd" class="w3-container" style="background-color: white; color: black;">
+        <table id="table-usrxprpaswd" style="color: black;" class="table table-striped table-bordered table-usrxprpaswd" width="100%" data-page-length="5" data-order="[[ 1, &quot;asc&quot; ]]">
+            <thead>
+                <tr>
+                    <th>Fullnames</th>
+                    <th>Username</th>
+                    <th>Email</th>
+                    <th>Password Expiry Date</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {%for i in range(0,len1)%}
+                    <tr>
+                        <td>{{staffWithExpiryDates[i]}}</td>
+                        
+                        <td id={{i}} class="viewInfo"><a href="{{ url_for('userInformation', var=staffUsernameWithExpiryDates[i]) }}" type="submit">{{staffUsernameWithExpiryDates[i]}}</a></td>
+                        <td>{{staffEmailsWithExpiryDates[i]}}</td>
+                        <td id=pwdExpiryDate>{{pwdExpiryDate[i]}}</td>
+                        <td>
+                            <button type="button" class="button btnReminder" id="btnReminder" onclick="window.location.href='{{ url_for('sendreminder', my_var=staffEmailsWithExpiryDates[i]) }}';">Send Reminder</button>
+                        </td>
+                    </tr>
+                {%endfor%}
+            </tbody>
+        </table>
+    </div>
+</fieldset>
+{% endblock %}

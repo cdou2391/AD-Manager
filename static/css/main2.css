@@ -1,0 +1,286 @@
+
+.flex-container {
+    display: flex;
+  }
+  
+.flex-container >.dash{
+    flex-basis: 100%;
+    padding: 10px;
+}
+.flex-container >.conf{
+    flex-basis: 100%;
+    padding: 10px;
+}
+.flex-container >.userbuttons{
+    flex-basis: 100%;
+    padding: 10px;
+}
+
+.flex-container >.infouser{
+    flex-basis: 100%;
+    padding: 10px;
+}
+
+.flex-container >.sgroups{
+    flex-basis: 100%;
+    padding: 10px;
+}
+.flex-container >.adreports{
+    flex-basis: 100%;
+    padding: 10px;
+}
+
+.infouser{
+    margin-bottom: 10px;
+}
+.pcompany{
+    color: white;
+    border: 0px solid;
+    padding: 10px;
+    font-size: 24px;
+    border-radius: 4px 4px 0px 0px; 
+}
+.infocompany{
+    border-radius:0px 0px 4px 4px; 
+    padding: 10px;
+    font-size: 19px;
+    border-style: 0px 4px 4px 4px solid;
+}
+
+fieldset {
+    border-radius: 4px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border: none;
+    background-color: white;
+}
+  
+legend {
+    color: white;
+    padding: 5px 10px;
+    margin-bottom: 10px;
+    border: none;
+    background-color: #434b92;
+    border-radius: 15px;
+}
+.tabcontent{
+    margin-left: 200px;
+}
+
+.content-tab{
+    margin-top: 60px;
+    z-index: -1;
+}
+.logo{
+    float: left;
+}
+
+.logo-title{
+    color: white;
+    font-size: 40px;
+    float: left;
+    margin-top:5px ;
+    margin-left: 5px;
+}
+
+.sidebar{
+    width: 200px;
+    background-color: #252936;
+    position: fixed;
+    height: 100%;
+    overflow: auto;
+    float: left;
+    margin: 0px;
+    border: none;
+    margin-left: 0px;
+}
+.dash{
+    background-color: #939df8b6;
+    color: white;
+    margin-left: 10px;
+    border-radius: 10px;
+}
+
+.dash:hover{
+    cursor: pointer;
+    background-color: #2f44ffb6;
+}
+
+.adreports{
+    background-color: #939df8b6;
+    color: white;
+    margin-left: 10px;
+    border-radius: 10px;
+}
+
+body{
+    margin: 0px;
+}
+
+.sidetab{
+    z-index: 2;
+}
+
+.topbar{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:60px;
+    background-color:#434b92;
+    z-index: 1;
+}
+
+.content-dashboard, .userinformation{
+}
+
+.userinformation{
+    border-color: #939df8b6;
+    border-style: solid;
+    width: 40%;
+}
+
+.userlogoinfo{
+    font-size: 18px;
+    float: right;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    color: white;
+}
+.userlogo{
+    float: left;
+    margin-right: 15px;
+}
+.userinfo{
+    float: left;
+    margin-right: 15px;
+    margin-top: 15px;
+}
+.linkslist{
+    text-decoration: none;
+    color: white;
+    float: left; 
+    margin-top: 0px;
+}
+
+
+li{
+    list-style-type: none;
+    margin-left: 0px;
+}
+li:hover{
+    background-color: #434b92;
+    color: white;
+}
+
+a{
+    text-decoration: none;
+    color: white;
+}
+.tablinks{
+    background-color: #252936;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: left;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    width: 100%;
+}
+.tablinks:hover, .tablinks:active {
+    background-color: #434b92;
+    color: white;
+}
+
+.selectedTab{
+    background-color: #434b92;
+}
+
+.syncStats{
+    position: absolute;
+    width: 100%;
+    bottom: 50px;
+    border: 3px solid #434b92;
+    background-color:#939df8b6;
+    color: white;
+}
+
+.viewInfo a{
+    color: black;
+}
+.btnReminder, .btnsave, .btnsync,.disableuser{
+    background-color: white;
+    border-color: #434b92;
+    border-radius: 10px;
+    padding: 5px;
+    width: 200px;
+}
+
+.btnReminder:hover, .btnsave:hover, .btnsync:hover{
+    background-color:#434b92;
+    color: white;
+    cursor: pointer;
+}
+
+
+tbody{
+    text-align: center;
+}
+
+.table-usrxprpaswd tr:nth-child(even) {
+    background-color: #939df8b6;
+}
+
+.table-consultants tr:nth-child(even) {
+    background-color: #939df8b6;
+}
+
+.table-lockedusers tr:nth-child(even) {
+    background-color: #939df8b6;
+}
+
+.table-bk tr:nth-child(even) {
+    background-color: #939df8b6;
+}
+
+.table-bkc tr:nth-child(even) {
+    background-color: #939df8b6;
+}
+
+.table-bkt tr:nth-child(even) {
+    background-color: #939df8b6;
+}
+
+.table-sa tr:nth-child(even) {
+    background-color: #939df8b6;
+}
+
+.table-consultants tr:nth-child(even) {
+    background-color: #939df8b6;
+}
+
+.table-gi tr:nth-child(even) {
+    background-color: #939df8b6;
+}
+
+.table-users tr:nth-child(even) {
+    background-color: #939df8b6;
+}
+
+.content-conf1{
+    border-style: solid;
+}
+
+.alluserinfo{
+    width: 60%;
+    white-space: initial;
+    margin-right: 40px;
+    padding: 5px 10px;
+}
+
+.userinfoad {
+    display: inline-block;
+    width: 110px;
+}

@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% block title %}
+Login Logs
+{% endblock %}
+{% block content %} 
+    <section class="app">
+        <aside class="sidebar">
+        <nav class="sidebar-nav">
+            <ul>
+                <li>
+                    <button class="tablinks" onclick="openTab(event, 'dashboard')" ><a href="{{url_for('home')}}">Dashboard</a></button>
+                </li>
+                <li class="item" id="staff">
+                    <a href="#staff" class="btn"><i class="fa fa-envelope"></i> Staff</a>
+                    <div class="smenu">
+                        <a href="{{url_for('staff')}}">All Staff</a>
+                        <a href="{{url_for('lockedusers')}}"></i>Locked Staffs</a>
+                        <a href="{{url_for('disabledstaff')}}"></i>Disabled Staffs</a>
+                    </div>
+                </li>
+            
+            {%if role=="View Only"%}
+                <div class="accessed-links" style="display:none">
+            {%else%} 
+                <div class="accessed-links">
+            {%endif%}
+                    <li>
+                        <button class="tablinks" onclick="openTab(event, 'Groups')"><a href="{{url_for('securitygroups')}}">Security Groups</a></button>
+                    </li>
+                    <li>
+                        <button class="tablinks" onclick="openTab(event, 'Reports')"><a href="{{url_for('reports')}}">Reports</a></button>
+                    </li>
+                    <li>
+                        <button class="tablinks" onclick="openTab(event, 'Configurations')" ><a href="{{url_for('configuration')}}">Configurations</a></button>
+                    </li>
+                    <li>
+                        <button class="tablinks" onclick="openTab(event, 'AccessManagement')"><a href="{{url_for('accessmanagement')}}">Access Management</a></button>
+                    </li>
+                    <li>
+                        <button class="tablinks" onclick="openTab(event, 'LoginLogs')" id="defaultOpen">Login Logs</button>
+                    </li>
+                </div>
+            </ul>
+        </nav>
+        <p class="syncStats">
+            <b1>Last sync time:</b1><br>{{syncTime}}<br>
+            {%if syncStatus =="Success"%}
+            <b2>Sync Status:</b2> <b3 style="color: #43924e;">{{syncStatus}}</b3>
+            {%else%}
+                <b2>Sync Status:</b2> <b3 style="color: #924343;">{{syncStatus}}</b3>
+            {%endif%}
+        </p>
+    </section>
+{% endblock %}
+{% block content10 %}
+{%if role=="Full Access"%}
+    <fieldset class="loginlogs">
+{%else%} 
+    <fieldset class="loginlogs" style="display:none">
+{%endif%}
+{% endblock %}

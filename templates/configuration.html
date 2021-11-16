@@ -1,0 +1,136 @@
+{% extends "base2.html" %}
+{% block title %}
+Configurations
+{% endblock %}
+{% block content %} 
+    <div class="sidebar">
+        <div class="linkslist">
+            <li>
+                <button class="tablinks" onclick="window.location.href='{{url_for('home')}}';">Dashboard</a></button>
+            </li>
+            <li>
+                <button class="tablinks" onclick="window.location.href='{{url_for('bkstaff')}}';">Bank of Kigali Staff</a></button>
+            </li>
+            <li>
+                <button class="tablinks" onclick="window.location.href='{{url_for('bkcstaff')}}';">BK Capital Staff</a></button>
+            </li>
+            <li>
+                <button class="tablinks" onclick="window.location.href='{{url_for('bkistaff')}}';">BK Insurance Staff</a></button>
+            </li>
+            <li>
+                <button class="tablinks" onclick="window.location.href='{{url_for('lockedusers')}}';">Locked Staff</a></button>
+            </li>
+            <li>
+                <button class="tablinks" onclick="window.location.href='{{url_for('disabledstaff')}}';">Disabled Staff</a></button>
+            </li>
+            <li>
+                <button class="tablinks" onclick="window.location.href='{{url_for('serviceaccounts')}}';">Service Accounts</a></button>
+            </li>
+            <li>
+                <button class="tablinks" onclick="window.location.href='{{url_for('consultants')}}';" >Consultants</a></button>
+            </li>
+            
+            {%if role=="View Only"%}
+                <div class="accessed-links" style="display:none">
+            {%else%} 
+                <div class="accessed-links">
+            {%endif%}
+                <li>
+                    <button class="tablinks" onclick="window.location.href='{{url_for('securitygroups')}}';">Security Groups</button>
+                </li>
+                <li>
+                    <button class="tablinks" onclick="window.location.href='{{url_for('reports')}}';">Reports</button>
+                </li> 
+                <li>
+                    <button class="tablinks selectedTab" id="defaultOpen">Configurations</button>
+                </li>
+                <li>
+                    <button class="tablinks" onclick="window.location.href='{{url_for('accessmanagement')}}';">Access Management</button>
+                </li>
+                <li>
+                    <button class="tablinks" onclick="window.location.href='{{url_for('loginlogs')}}';">Login Logs</button>
+                </li>
+        </div>
+    </div>
+    <div class="syncStats">
+        <b1>Last sync time:</b1><br>{{syncTime}}<br>
+        {%if syncStatus =="Success"%}
+        <b2>Sync Status:</b2> <b3 style="color: #43924e;">{{syncStatus}}</b3>
+        {%else%}
+            <b2>Sync Status:</b2> <b3 style="color: #924343;">{{syncStatus}}</b3>
+        {%endif%}
+    </div>
+{% endblock %}
+{% block content5 %} 
+<fieldset class="content-dashboard">
+    <legend style="font-size: 30px;">CONFIGURATIONS</legend>
+        <div class="flex-container">
+            <div class="conf">
+                <form>
+                    <fieldset class="content-conf1">
+                        <legend style="font-size: 20px;">LDAP Configurations:</legend>
+                        <label for="server1">LDAP Server 1:</label>
+                        <input type="text" id="server1" name="server1" value ="{{LDAP_SERVER}}"><br><br>
+                        <label for="server2">LDAP Server 2:</label>
+                        <input type="text" id="server2" name="server2" value ="{{LDAP_SERVER2}}"><br><br>
+                        <label for="domain">Domain Name:</label>
+                        <input type="text" id="domain" name="domain" value ="{{domain}}">
+                        </br>
+                        </br>
+                        <center><input class="button btnsave" type="submit" value="Save"></center>
+                    </fieldset>
+                </form>
+            </div>
+
+            <div class="conf">
+                <form>
+                    <fieldset class="content-conf1">
+                        <legend style="font-size: 20px;">Service Account Configurations:</legend>
+                        <label for="email">Username:</label>
+                        <input type="email" id="serviceAccountUsername" name="email" value ="{{serviceAccountUsername}}"><br><br>
+                        <label for="serviceAccountPassword">Password:</label>
+                        <input type="password" id="password" name="password" value ="{{serviceAccountPassword}}">
+                        </br>
+                        </br>
+                        <center><input class="button btnsave" type="submit" value="Save"></center>
+                    </fieldset>
+                </form>
+            </div>
+
+            <div class="conf">
+                <form>
+                    <fieldset class="content-conf1">
+                        <legend style="font-size: 20px;">Email Server Configurations:</legend>
+                        <label for="smtpserver">SMTP Server:</label>
+                        <input type="text" id="smtpserver" name="smtpserver" value ="{{smtpserver}}"><br><br>
+                        <label for="portserver">Port:</label>
+                        <input type="text" id="portserver" name="portserver" value ="{{port}}"><br><br>
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" name="email" value ="{{smtpemail}}"><br><br>
+                        <label for="password">Password:</label>
+                        <input type="password" id="password" name="password" value ="{{password}}">
+                        </br>
+                        </br>
+                        <center><input class="button btnsave" type="submit" value="Save"></center>
+                    </fieldset>
+                </form>
+            </div>
+
+            <div class="conf">
+                <form action="/syncnow" method = "POST">
+                    <div class="line"></div>
+                    <fieldset class="content-conf1">
+                        <legend style="font-size: 20px;">Synchronisation Status:</legend>
+                        <label for="synctime">Last synchronisation time:</label>
+                        <input type="text" id="synctime" name="synctime" value ="{{syncTime}}"><br><br>
+                        <label for="syncstatus">Status:</label>
+                        <input type="text" id="syncstatus" name="syncstatus" value ="{{syncStatus}}">
+                        </br>
+                        </br>
+                        <center><input class="button btnsync" type="submit" value="Sync now"></center>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+</fieldset>
+{% endblock %}

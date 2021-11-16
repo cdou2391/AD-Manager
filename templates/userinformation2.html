@@ -1,0 +1,137 @@
+{% extends "base2.html" %}
+{% block title %}
+User Information
+{% endblock %}
+{% block content %} 
+    <div class="sidebar">
+        <div class="linkslist">
+            <li>
+                <button class="tablinks" onclick="window.location.href='{{url_for('home')}}';">Dashboard</a></button>
+            </li>
+            <li class="item" id="staff">
+                <a href="#staff" class="btn"><i class="fa fa-envelope"></i> Staff</a>
+                <div class="smenu">
+                    <a href="{{url_for('staff')}}">All Staff</a>
+                    <a href="{{url_for('lockedusers')}}"></i>Locked Staffs</a>
+                    <a href="{{url_for('disabledstaff')}}"></i>Disabled Staffs</a>
+                </div>
+            </li>
+        
+        {%if role=="View Only"%}
+        <div class="accessed-links" style="display:none">
+        {%else%} 
+            <div class="accessed-links">
+        {%endif%}
+                <li>
+                    <button class="tablinks" onclick="window.location.href='{{url_for('securitygroups')}}';">Security Groups</button>
+                </li>
+                <li>
+                    <button class="tablinks" onclick="window.location.href='{{url_for('reports')}}';">Reports</button>
+                </li> 
+                <li>
+                    <button class="tablinks" onclick="window.location.href='{{url_for('configuration')}}';">Configurations</button>
+                </li>
+                <li>
+                    <button class="tablinks" onclick="window.location.href='{{url_for('accessmanagement')}}';">Access Management</button>
+                </li>
+                <li>
+                    <button class="tablinks" onclick="window.location.href='{{url_for('loginlogs')}}';">Login Logs</button>
+                </li>
+        </div>
+    </div>
+    <div class="syncStats">
+        <b1>Last sync time:</b1><br>{{syncTime}}<br>
+        {%if syncStatus =="Success"%}
+        <b2>Sync Status:</b2> <b3 style="color: #43924e;">{{syncStatus}}</b3>
+        {%else%}
+            <b2>Sync Status:</b2> <b3 style="color: #924343;">{{syncStatus}}</b3>
+        {%endif%}
+    </div>
+{% endblock %}
+{% block content6 %}
+    <center><div>
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+            </ul>
+        {% endif %}
+        {% endwith %}
+    </div></center>
+    
+    {%if userValidation=="true"%}
+    <fieldset class="userinformation" style="font-size: small;">
+        <legend style="text-align: left;font-size: 30px;">User Information</legend>
+            <div class="infouser">
+                <span class="alluserinfo" type="text" value ="{{userDN}}" readonly></span>
+                <p><h4>User AD Location: <b4><input class="alluserinfo" type="text" id="memberOf" name="userFullname"  value ="{{userDN}}" readonly></b4></h4></p>
+                <p><h4>Fullname: <b4><input class="alluserinfo" type="text" id="memberOf" name="userFullname"  value ="{{userFullname}}" readonly></b4></h4></p>
+                <p><h4>Username: <b4><input class="alluserinfo" type="text" id="memberOf" name="userFullname"  value ="{{username}}" readonly></b4></h4></p>
+                <p><h4>email: <b4><input class="alluserinfo" type="text" id="memberOf" name="userFullname"  value ="{{useremail}}" readonly></b4></h4></p>
+                <p><h4>Mobile Number: <b4><input class="alluserinfo" type="text" id="memberOf" name="userFullname"  value ="{{userMobileNumber}}" readonly></b4></h4></p>
+                <p><h4>Post: <b4><input class="alluserinfo" type="text" id="memberOf" name="userFullname"  value ="{{usertitle}}" readonly></b4></h4></p>
+                <p><h4>Department: <b4><input class="alluserinfo" type="text" id="memberOf" name="userFullname"  value ="{{userdepartment}}" readonly></b4></h4></p>
+                {%if userstatus==512%}
+                    <p><h4>Account Status: <b4><input class="alluserinfo" type="text" id="memberOf" style="color: green;" name="userFullname"  value ="Enabled" readonly></b4></h4></p>
+                {%elif userstatus==514%}
+                    <p><h4>Account Status: <b4><input class="alluserinfo" type="text" id="memberOf" style="color:red;" name="userFullname"  value ="Disabled" readonly></b4></h4></p>
+                {%elif userstatus==66048%}
+                    <p><h4>Account Status: <b4><input class="alluserinfo" type="text" id="memberOf" style="color:yellowgreen;" name="userFullname"  value ="Enabled with password never expires" readonly></b4></h4></p>
+                {%else%}
+                    <p><h4>Account Status: <b4><input class="alluserinfo" type="text" id="memberOf" style="color:orange;" name="userFullname"  value ="Unknown" readonly></b4></h4></p>
+                {%endif%}
+                {%if accountState=="Unlocked"%}
+                    <p><h4>Account State: <b4><input class="alluserinfo" type="text" id="memberOf" style="color: green;" name="userFullname" value ="{{accountState}}" readonly></b4></h4></p>
+                {%else%}
+                    <p><h4>Account State: <b4><input class="alluserinfo" type="text" id="memberOf" style="color:red;" name="userFullname" value ="{{accountState}}" readonly></b4></h4></p>
+                {%endif%}
+                <p><h4>Creation Date: <b4><input class="alluserinfo" type="text" id="memberOf" name="userFullname"  value ="{{usercreationdate}}" readonly></b4></h4></p>
+                <p><h4>Last modified: <b4><input class="alluserinfo" type="text" id="memberOf" name="userFullname"  value ="{{lastModified}} "readonly></b4></h4></p>
+                <p><h4>Password expires: <b4><input class="alluserinfo" type="text" id="memberOf" name="userFullname"  value ="{{pwdExpiryDate}} "readonly></b4></h4></p>
+                <p><h4>Group Membership: <b4><textarea class="alluserinfo" type="text" id="memberOf" name="userFullname" rows="1" cols="50">{{memberOf}}</textarea></b4></h4></p>
+                <p><h4>Company: <b4><input class="userinfo" type="text" id="memberOf" name="userFullname" value ="{{company}}" readonly></b4></h4></p>
+                <br>
+                <div class="flex-container">
+                    <div class="userbuttons">
+                        
+                        {%if role=="View Only"%}
+                            <button class="button btnUser" id="btnUser" style="font-family:Helvetica; display:none">Edit</button>
+                            <button class="button btnUser" id="btnUser" style="font-family:Helvetica; display:none">Save</button>
+                            {%if userstatus==512 or userstatus==66048%}
+                                <button class="button btnUser" id="btnUser" style="font-family:Helvetica;display:none"><a href="{{ url_for('disable', var=username) }}">Disable</a></button>
+                                <button class="button btnUser" id="btnUser" style="font-family:Helvetica;display:none"><a href="{{ url_for('resetuserpassword', var=username) }}" type="submit" style="font-family:Helvetica;">Reset Password</button></a>
+                            {%elif userstatus==514%}
+                                <button class="button btnUser" id="btnUser" style="font-family:Helvetica;display:none"><a href="{{ url_for('disable', var=username) }}">Enable</a></button>
+                            {%else%}
+                                <button class="button btnUser" id="btnUser" style="font-family:Helvetica;display:none">Enable/Disable</button>
+                            {%endif%}
+                        {%else%}
+                            <button class="button btnUser" id="btnUser" style="font-family:Helvetica;">Edit</button>
+                            <button class="button btnUser" id="btnUser" style="font-family:Helvetica;">Save</button>
+                            {%if userstatus==512 or userstatus==66048%}
+                                <button class="button btnUser" id="btnUser" style="font-family:Helvetica;"><a href="{{ url_for('disable', var=username) }}">Disable</a></button>
+                            {%elif userstatus==514%}
+                                <button class="button btnUser" id="btnUser" style="font-family:Helvetica;"><a href="{{ url_for('disable', var=username) }}">Enable</a></button>
+                            {%else%}
+                                <button class="button btnUser" id="btnUser" style="font-family:Helvetica;">Enable/Disable</button>
+                            {%endif%}
+                        {%endif%}
+                        {%if userstatus==512 or userstatus==66048%}
+                            <button class="button btnUser" id="btnUser" style="font-family:Helvetica;"><a href="{{ url_for('resetuserpassword', var=username) }}" type="submit" style="font-family:Helvetica;">Reset Password</button></a>
+                        {%endif%}
+                        
+                        {%if accountState=="Unlocked"%}
+                            <button class="button btnUser" id="btnUser" style="font-family:Helvetica;visibility: hidden;">Unlock</button>
+                        {%else%}
+                            <button class="button btnUser" id="btnUser" style="font-family:Helvetica;"><a href="{{ url_for('unlockUser', var=username) }}">Unlock</a></button>
+                        {%endif%}
+                    </div>
+                </div>
+            </div>
+        </div>    
+    </fieldset>
+    {%else%}
+        {{error}}
+    {%endif%}
+{% endblock %}

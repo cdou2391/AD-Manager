@@ -1,0 +1,72 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Simple AD Manager | Initial Configurations</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->	
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="./static/css/util.css">
+    <link rel="stylesheet" type="text/css" href="./static/css/main.css">
+    <link rel="stylesheet" type="text/css" href="./static/css/style.css">
+    <link href="./static/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
+    
+    <script src="./static/js/jquery-3.5.1.js" type="text/javascript"></script>
+    <script src="./static/js/jquery.dataTables.min.js" type="text/javascript"></script>
+    <script src="./static/js/scripts.js" type="text/javascript"></script>
+    
+    
+
+<!--===============================================================================================-->
+
+</head>
+<body>
+    <fieldset class="content-center">
+        <legend style="font-size: 30px;">Initial Configurations:</legend>
+        <h2>Hello there,<br>
+            Thank you for choosing SimpleAD Manager as your Active Directory Manager!<br>
+            It seems this your first use, please input the neccessary information below!<br><br>
+            After you are done! Enjoy the software and we hope you will satisfied!
+        </h2>
+        <br><br>
+        <form action = "save_initial_configuration" method = "POST">
+            <fieldset class="content-conf0">
+                <legend style="font-size: 20px;">LDAP Configurations:</legend>
+                <label for="server1">LDAP Server 1:</label>
+                <input type="text" id="server1" name="server1"><br><br>
+                <label for="server2">LDAP Server 2:</label>
+                <input type="text" id="server2" name="server2"><br><br>
+                <label for="domain">Domain Name:</label>
+                <input type="text" id="domain" name="domain"><br>
+                <label for="domain">Company Name:</label>
+                <input type="text" id="company" name="company"><br>
+                <div class="line"></div>
+            </fieldset>
+            <fieldset class="content-conf0">
+                <legend style="font-size: 20px;">Service Account Configurations:</legend>
+                <label for="email">Username:</label>
+                <input type="text" id="serviceAccountUsername" name="serviceAccountUsername"><br><br>
+                <label for="serviceAccountPassword">Password:</label>
+                <input type="password" id="serviceAccountPassword" name="serviceAccountPassword"><br>
+            </fieldset>
+            <fieldset class="content-conf0">
+                <legend style="font-size: 20px;">Email Server Configurations:</legend>
+                <label for="smtpserver">SMTP Server:</label>
+                <input type="text" id="smtpserver" name="smtpserver"><br><br>
+                <label for="smtpport">Port:</label>
+                <input type="text" id="smtpport" name="smtpport"><br><br>
+                <label for="smtpemail">Email:</label>
+                <input type="smtpemail" id="email" name="smtpemail"><br><br>
+                <label for="smtppassword">Password:</label>
+                <input type="password" id="smtppassword" name="smtppassword"<br>
+            </fieldset>
+            <center><input class="button btnsave" type="submit" style="width: 30%;" value="Save All"></center>
+        </form> 
+        
+        
+    </fieldset>
+</body>
+
+</html>

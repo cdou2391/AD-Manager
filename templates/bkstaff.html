@@ -1,0 +1,100 @@
+{% extends "base2.html" %}
+{% block title %}
+BK Staff
+{% endblock %}
+{% block content %} 
+    <div class="sidebar">
+        <div class="linkslist">
+            <li>
+                <button class="tablinks" onclick="window.location.href='{{url_for('home')}}';">Dashboard</a></button>
+            </li>
+            <li>
+                <button class="tablinks selectedTab" id="defaultOpen">Bank of Kigali Staff</a></button>
+            </li>
+            <li>
+                <button class="tablinks" onclick="window.location.href='{{url_for('bkcstaff')}}';">BK Capital Staff</a></button>
+            </li>
+            <li>
+                <button class="tablinks" onclick="window.location.href='{{url_for('bkistaff')}}';">BK Insurance Staff</a></button>
+            </li>
+            <li>
+                <button class="tablinks" onclick="window.location.href='{{url_for('lockedusers')}}';">Locked Staff</a></button>
+            </li>
+            <li>
+                <button class="tablinks" onclick="window.location.href='{{url_for('disabledstaff')}}';">Disabled Staff</a></button>
+            </li>
+            <li>
+                <button class="tablinks" onclick="window.location.href='{{url_for('serviceaccounts')}}';">Service Accounts</a></button>
+            </li>
+            <li>
+                <button class="tablinks" onclick="window.location.href='{{url_for('consultants')}}';" >Consultants</a></button>
+            </li>
+            
+            {%if role=="View Only"%}
+                <div class="accessed-links" style="display:none">
+            {%else%} 
+                <div class="accessed-links">
+            {%endif%}
+                <li>
+                    <button class="tablinks" onclick="window.location.href='{{url_for('securitygroups')}}';">Security Groups</button>
+                </li>
+                <li>
+                    <button class="tablinks" onclick="window.location.href='{{url_for('reports')}}';">Reports</button>
+                </li> 
+                <li>
+                    <button class="tablinks" onclick="window.location.href='{{url_for('configuration')}}';">Configurations</button>
+                </li>
+                <li>
+                    <button class="tablinks" onclick="window.location.href='{{url_for('accessmanagement')}}';">Access Management</button>
+                </li>
+                <li>
+                    <button class="tablinks" onclick="window.location.href='{{url_for('loginlogs')}}';">Login Logs</button>
+                </li>
+        </div>
+    </div>
+    <div class="syncStats">
+        <b1>Last sync time:</b1><br>{{syncTime}}<br>
+        {%if syncStatus =="Success"%}
+        <b2>Sync Status:</b2> <b3 style="color: #43924e;">{{syncStatus}}</b3>
+        {%else%}
+            <b2>Sync Status:</b2> <b3 style="color: #924343;">{{syncStatus}}</b3>
+        {%endif%}
+    </div>
+{% endblock %}
+{% block content9 %}
+    <fieldset class="content-dashboard">    
+        <legend style="font-size: 30px;">Bank of Kigali Staff</legend>
+        <div id="BK Capital" class="w3-container w3-border company" style="background-color: white;">
+            <table id="table-bk" style="color: black;"  class="table table-striped table-bordered table-bk" width="100%" data-page-length="10" data-order="[[ 1, &quot;asc&quot; ]]">
+                <thead>
+                    <tr>
+                        <th>Fullnames</th>
+                        <th>Username</th>
+                        <th>Email</th>
+                        <th>Title</th>
+                        <th>Department</th>
+                        <th>Date Created</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {%for i in range(0,len)%}
+                        {%if companies[i] == "Bank of Kigali"%}
+                        <tr>
+                            <td>{{allStaff[i]}}</td>
+                            <td id={{i}} class="viewInfo"><a href="{{ url_for('userInformation', var=username[i]) }}" href="#popup1" type="submit">{{username[i]}}</a></td>
+                            <td>{{email[i]}}</button></td>
+                            <td>{{title[i]}}</td>
+                            <td>{{department[i]}}</td>
+                            <td>{{staffCreationDate[i]}}</td>
+                            <td>
+                            </td>
+                        </tr>
+                        {%endif%}
+                    {%endfor%}
+                </tbody>
+            </table>
+        </div>
+    </fieldset>
+{% endblock %}
+

@@ -1,0 +1,1 @@
+{"config": [{"initialised": "true", "ldapserver1": "10.102.148.3", "ldapserver2": "10.102.148.8", "domain": "bk.local"}]}

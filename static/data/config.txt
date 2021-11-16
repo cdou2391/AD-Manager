@@ -1,0 +1,4 @@
+{"appConf": [{"initialised": "true"}]}
+{"domainConf": [{"initialised": "true", "ldapserver1": "10.102.148.3", "ldapserver2": "10.103.148.12", "domain": "bk.local"}]}
+{"emailConf": [{"smtpserver": "smtp.office365.com", "port": "587", "securityprotocol": "tls", "email": "crugamba@bk.rw", "password": "$pbkdf2-sha256$30000$B8AYg5Cy9p6TUkpJyVlrzQ$bTOVWl4lRtYoHly.2FKnO.MXskloA.EMutpMK1A/xcw"}]}
+{"saConf": [{"serviceAccountUsername": "crugamba", "serviceAccountPassword": "$pbkdf2-sha256$30000$B8AYg5Cy9p6TUkpJyVlrzQ$bTOVWl4lRtYoHly.2FKnO.MXskloA.EMutpMK1A/xcw", "companyname": "Bank of Kigali"}]}
