@@ -1,1 +1,1 @@
-# AD-Manager
+# Simple AD Manager
